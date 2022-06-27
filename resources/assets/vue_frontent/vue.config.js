@@ -5,5 +5,7 @@ module.exports = defineConfig({
             // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
         }
     },
-    outputDir: '../../../public/assets',
+    outputDir: '../../../public/vue_temp',
+    // assetsDir: '../'
+    indexPath: '../../resources/views/app.blade.php'
 })
