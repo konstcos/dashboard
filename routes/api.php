@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::match(['post', 'option'], '/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware('auth:sanctum')
+    ->match(['post', 'option'],'/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:sanctum')->group(function() {
+    Route::match(['post', 'option'], '/user', [AuthController::class, 'user'])->name('user');
+    Route::match(['post', 'option'], '/logout', [AuthController::class, 'logout'])->name('logout');
 });

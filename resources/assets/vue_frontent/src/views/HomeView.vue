@@ -5,12 +5,12 @@
 
           v-for="n in 4"
           :key="n"
-          cols="6"
+          cols="4"
       >
         <v-card
-            :title="`Content ${n}`"
+            :title="`Project ${n}`"
             :subtitle="`Subtitle for Content ${n}`"
-            color="grey-darken-3"
+            color="blue-darken-3"
             text="Lorem ipsum dolor sit amet consectetur, adipisicing elit.?"
         ></v-card>
       </v-col>
