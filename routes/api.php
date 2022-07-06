@@ -25,4 +25,5 @@ Route::middleware('auth:sanctum')
 Route::middleware('auth:sanctum')->group(function() {
     Route::match(['post', 'option'], '/user', [AuthController::class, 'user'])->name('user');
     Route::match(['post', 'option'], '/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::match(['post', 'option'], '/password/change', [AuthController::class, 'changePassword'])->name('changePassword');
 });

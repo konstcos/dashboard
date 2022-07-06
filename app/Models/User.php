@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\AuthException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,5 +54,33 @@ class User extends Authenticatable
     public function checkPassword(string $userPassword): bool
     {
         return Hash::check($userPassword, $this->password);
+    }
+
+    /**
+     * @param string $newPassword
+     *
+     * @throws AuthException
+     */
+    public function updatePassword(string $newPassword): void
+    {
+        $this->assertPassword($newPassword);
+        $this->update(['password' => Hash::make($newPassword)]);
+    }
+
+    /**
+     * @param string $newPassword
+     *
+     * @throws AuthException
+     */
+    private function assertPassword(string $newPassword): void
+    {
+        if ($this->comparePassword($newPassword)) {
+            throw AuthException::passwordsIdenticalException();
+        }
+    }
+
+    public function comparePassword(string $password): bool
+    {
+        return Hash::check($password, $this->password);
     }
 }

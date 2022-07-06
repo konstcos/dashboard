@@ -15,8 +15,8 @@
             density="compact"
             nav
         >
-          <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-          <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
+          <v-list-item to="/" prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
+          <v-list-item to="/setting" prepend-icon="mdi-cog-outline" title="Settings" value="setting"></v-list-item>
         </v-list>
 
         <template v-slot:append>

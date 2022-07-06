@@ -13,4 +13,10 @@ export default {
     async logout() {
         return await appFetch('logout');
     },
+    async changePassword(oldPassword, newPassword) {
+        return await appFetch('password/change', {
+            old_password: oldPassword,
+            new_password: newPassword
+        })
+    }
 } as Api

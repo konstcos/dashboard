@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-
+use App\Exceptions\AuthException;
 
 class AuthController extends Controller
 {
@@ -57,6 +57,33 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'slug' => 'token_delete',
+        ]);
+    }
+
+    public function changePassword(Request $request): JsonResponse
+    {
+        $user = $request->user();
+        $oldPassword = $request->get('old_password');
+        $newPassword = $request->get('new_password');
+
+        try {
+            if (! $user->comparePassword($oldPassword)) {
+                throw AuthException::passwordsDoNotIdenticalException();
+            }
+
+            $user->updatePassword($newPassword);
+        } catch (AuthException $e) {
+            return response()->json([
+                'status' => 'fail',
+                'code' => AuthException::CODE[$e->getCode()],
+                'message' => $e->getMessage()
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'slug' => 'password_updated',
+            'message' => 'Password updated'
         ]);
     }
 

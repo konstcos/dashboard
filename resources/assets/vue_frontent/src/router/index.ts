@@ -8,18 +8,18 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
+    path: '/setting',
+    name: 'setting',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import(/* webpackChunkName: "setting" */ '../views/SettingView.vue')
   }
-]
+] as any;
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+} as any);
 
 export default router
