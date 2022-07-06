@@ -1,10 +1,12 @@
 import useUser from "@/entitis/UserEntity";
 const {getToken} = useUser();
 
-// todo сделать через env или другую систему
-const baseUrl = 'http://192.168.0.104:8000';
+const baseUrl = process.env.VUE_APP_API_URL as string;
 
 export const appFetch = async (link: string, requestBody: any = {}) => {
+
+    const apiBaseUrl = baseUrl.trim() === '' ? '/api' : `${baseUrl.trim()}/api`
+
     const token = getToken();
     const headers = {
         'accept': 'application/json',
@@ -15,7 +17,7 @@ export const appFetch = async (link: string, requestBody: any = {}) => {
         headers['Authorization'] = `Bearer ${token}`
     }
 
-    let response = await fetch(`${baseUrl}/api/${link}`, {
+    let response = await fetch(`${apiBaseUrl}/${link}`, {
         method: 'POST',
         headers,
         body: JSON.stringify(requestBody),
