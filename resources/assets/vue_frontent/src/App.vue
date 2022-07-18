@@ -41,7 +41,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue'
 import Login from '../src/components/Login.vue'
-import useUser from "@/entitis/UserEntity";
+import useUser from "@/entities/UserEntity";
 import useAuthService from "@/services/AuthService";
 
 export default defineComponent({

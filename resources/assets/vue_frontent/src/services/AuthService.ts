@@ -1,5 +1,5 @@
 import api from '@/api/user'
-import useUser from "@/entitis/UserEntity";
+import useUser from "@/entities/UserEntity";
 const {setToken, fillUserData, clearAllUserData} = useUser();
 
 

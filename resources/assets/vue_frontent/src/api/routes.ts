@@ -4,3 +4,9 @@ export enum User {
     Logout = 'logout',
     PasswordChange = 'password/change',
 }
+
+export enum Projects {
+    All = 'all',
+    Get = 'get',
+    Save = 'save',
+}

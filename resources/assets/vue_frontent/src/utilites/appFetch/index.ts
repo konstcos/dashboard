@@ -1,4 +1,4 @@
-import useUser from "@/entitis/UserEntity";
+import useUser from "@/entities/UserEntity";
 const {getToken} = useUser();
 
 const baseUrl = process.env.VUE_APP_API_URL as string;
